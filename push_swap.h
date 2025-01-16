@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:48:44 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/15 12:29:22 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:39:46 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,7 @@ void			rotate_both(t_stack_node **head_a, t_stack_node **head_b);
 void			sort_stack(t_stack_node **head_a, t_stack_node **head_b);
 t_stack_node	*get_biggest_node(t_stack_node *head);
 t_stack_node	*get_smallest_node(t_stack_node *head);
+
+
+void	print_both_lists(t_stack_node *head_a, t_stack_node *head_b);
 #endif

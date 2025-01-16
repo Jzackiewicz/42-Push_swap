@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 17:35:13 by jzackiew          #+#    #+#             */
-/*   Updated: 2024/12/28 12:48:59 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:42:02 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ char	*convert_num_to_base(uintptr_t nbr, char *base)
 {
 	char		*converted_num;
 	int			hex_len;
-	int			sign;
 	uintptr_t	unsigned_nbr;
 
-	sign = 1;
 	unsigned_nbr = (uintptr_t)nbr;
 	hex_len = get_convnum_len(unsigned_nbr, base);
 	converted_num = (char *)ft_calloc((hex_len + 1), sizeof(char));

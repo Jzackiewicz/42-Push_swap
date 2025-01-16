@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 17:36:41 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/15 14:03:30 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/16 20:21:06 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,22 +75,17 @@ void	print_list(t_stack_node *head)
 
 int		get_list_len(t_stack_node *node)
 {
-	t_stack_node	*tmp;
 	int				len;
 	
 	if (!node)
 		return (0);
 	len = 0;
-	tmp = node;
-	while (tmp)
-	{
-		len++;
-		tmp = tmp->next;
-	}
 	while (node->prev)
+		node = node->prev;
+	while (node)
 	{
 		len++;
-		node = node->prev;
+		node = node->next;
 	}
 	return (len);
 }

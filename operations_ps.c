@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:07:39 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/15 09:16:40 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:46:03 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ void	push(t_stack_node **head_to, t_stack_node **head_from, char mode)
 	t_stack_node	*tmp;
 
 	if (!(*head_from))
-		return ;	
+		return ;
 	tmp = *head_from;
-	(*head_from)->next->prev = NULL;
+	
+	if ((*head_from)->next)
+		(*head_from)->next->prev = NULL;
 	(*head_from) = (*head_from)->next;
 	if (*head_to)
 	{
@@ -56,6 +58,7 @@ void	push(t_stack_node **head_to, t_stack_node **head_from, char mode)
 	}
 	else
 		tmp->next = NULL;
+	
 	*head_to = tmp;
 	if (mode == 'a')
 		ft_printf("pa\n");
