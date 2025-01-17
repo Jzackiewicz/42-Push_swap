@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:51:56 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/16 20:21:52 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:51:53 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,12 +232,13 @@ char	***get_all_variants(t_stack_node *head_a, t_stack_node *head_b)
 	int				i;
 	
 	list_len = get_list_len(head_a);
-	ft_printf("list_len: %d\n", list_len);
 	moves_variants = (char ***)ft_calloc(sizeof(char **), list_len + 1);
 	i = 0;
+
 	while (head_a)
 	{
 		tmp = get_target_node(head_a, head_b);
+		ft_printf("target: %d\n", tmp->number);
 		moves_variants[i++] = get_moves(head_a, tmp);
 		head_a = head_a->next;
 	}
@@ -259,7 +260,6 @@ char	**get_fewest_moves(t_stack_node *head_a, t_stack_node *head_b)
 	{
 		if (get_2d_strlen(moves_variants[i]) < num_of_moves)
 		{
-			ft_printf_2d_array(moves_variants[i]);
 			num_of_moves = get_2d_strlen(moves_variants[i]);
 			best_variant = moves_variants[i];
 		}
@@ -274,14 +274,24 @@ void	do_operations(t_stack_node **head_a, t_stack_node **head_b, char **moves)
 	int	i;
 
 	i = 0;
-	ft_printf("num to move: %d ", (*head_a)->number);
-	ft_printf("moves: ");
-	ft_printf_2d_array(moves);
 	while (moves[i])
 	{
 		do_operation(head_a, head_b, moves[i]);
 		i++;
 	}
+}
+
+void	print_node_numbers(t_stack_node *node)
+{
+	if (node->prev)
+		ft_printf("prev: %d | ", node->prev->number);
+	else
+		ft_printf("prev: NONE | ");
+	ft_printf("curr: %d | ", node->number);
+	if (node->next)
+		ft_printf("next: %d", node->next->number);
+	else
+		ft_printf("next: NONE");
 	ft_printf("\n");
 }
 
@@ -289,25 +299,22 @@ void	sort_stack(t_stack_node **head_a, t_stack_node **head_b)
 {
 	char			**best_variant;
 	t_stack_node	*tmp_node;
-	int				distance;
+	//int				distance;
 	
+	ft_printf("%d\n", 5 / 2);
 	while (get_list_len(*head_b) < 2)
 		push(head_b, head_a, 'b');
 	while (*head_a)
 	{
 		tmp_node = (*head_a)->next;
 		best_variant = get_fewest_moves(*head_a, *head_b);
-		ft_printf("DUPAAA \n");
-		// ft_printf_2d_array(best_variant);
-		// ft_printf("END\n");
-		//do_operations(head_a, head_b, best_variant);
+		do_operations(head_a, head_b, best_variant);
+		//print_both_lists(*head_a, *head_b);
 		*head_a = tmp_node;
-		ft_printf("Last node: %d\n", tmp_node->number);
 	}
-	tmp_node = get_biggest_node(*head_b);
-	distance = get_node_distance(tmp_node);
-	ft_printf("distance: %d\n", distance);
-	while (distance)
+	// tmp_node = get_biggest_node(*head_b);
+	// distance = get_node_distance(tmp_node);
+	/* while (distance)
 	{
 		if (get_node_distance(tmp_node) > 0)
 			rotate(head_b, 'b');
@@ -315,7 +322,7 @@ void	sort_stack(t_stack_node **head_a, t_stack_node **head_b)
 			reverse_rotate(head_b, 'b');
 		tmp_node = get_biggest_node(*head_b);
 		distance = get_node_distance(tmp_node);
-	}
+	} */
 	
 	/* while(tmp_node->prev)
 	{
