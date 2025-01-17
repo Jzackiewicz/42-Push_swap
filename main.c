@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:01:18 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/16 17:22:46 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/17 19:19:03 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,11 @@ int	main(int argc, char **argv)
 	/* ft_printf("Before sort: \n");
 	print_both_lists(a_head, b_head); */
 	sort_stack(&a_head, &b_head);
-	ft_printf("After sort: \n");
+	// ft_printf("After sort: \n");
 	print_both_lists(a_head, b_head);
 	//free_list(&a_head);
 	//free_list(&b_head);
 	return (0);
 }
+
+// ./push_swap -2 1 923 2 -1 3
