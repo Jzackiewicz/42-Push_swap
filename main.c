@@ -37,13 +37,13 @@ int	main(int argc, char **argv)
 	a_head = NULL;
 	b_head = NULL;
 	convert2list(&a_head, elements);
-	/* ft_printf("Before sort: \n");
-	print_both_lists(a_head, b_head); */
+/*    ft_printf("Before sort: \n");
+	print_both_lists(a_head, b_head);*/
 	sort_stack(&a_head, &b_head);
-	// ft_printf("After sort: \n");
-	print_both_lists(a_head, b_head);
-	//free_list(&a_head);
-	//free_list(&b_head);
+	/*ft_printf("After sort: \n");
+	print_both_lists(a_head, b_head);*/
+	free_list(&a_head);
+	free_list(&b_head);
 	return (0);
 }
 
