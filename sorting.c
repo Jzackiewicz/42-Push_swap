@@ -54,10 +54,10 @@ t_stack_node	*get_smallest_node(t_stack_node *head)
 
 	if (!head)
 		return (NULL);
-	smallest_number = INT_MIN;
+	smallest_number = head->number;
 	while (head)
 	{
-		if (head->number <= smallest_number)
+		if (head->number < smallest_number)
 		{
 			smallest_number = head->number;
 			smallest_node = head;
@@ -94,11 +94,13 @@ t_stack_node	*get_target_node(t_stack_node *node, t_stack_node *head_b)
 int	get_node_distance(t_stack_node *node)
 {
 	int	pos;
+    int list_len;
 	int	distance;
 
+    list_len = get_list_len(node);
 	pos = get_node_position(node);
-	if (pos > (get_list_len(node) / 2))
-		distance = pos - get_list_len(node);
+	if (pos > (list_len / 2))
+		distance = pos - list_len;
 	else
 		distance = pos;
 	return (distance);
@@ -238,11 +240,29 @@ char	***get_all_variants(t_stack_node *head_a, t_stack_node *head_b)
 	while (head_a)
 	{
 		tmp = get_target_node(head_a, head_b);
-		ft_printf("target: %d\n", tmp->number);
 		moves_variants[i++] = get_moves(head_a, tmp);
 		head_a = head_a->next;
 	}
 	return (moves_variants);
+}
+
+void	free_3d_array(char ***array)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	while (array[i])
+	{
+		j = 0;
+		while (array[i][j])
+		{
+			free(array[i][j]);
+			j++;
+		}
+		i++;
+	}
+	free(array);
 }
 
 char	**get_fewest_moves(t_stack_node *head_a, t_stack_node *head_b)
@@ -265,7 +285,8 @@ char	**get_fewest_moves(t_stack_node *head_a, t_stack_node *head_b)
 		}
 		i++;
 	}
-	free(moves_variants);
+
+	//free_3d_array(moves_variants);
 	return (best_variant);
 }
 
@@ -297,24 +318,20 @@ void	print_node_numbers(t_stack_node *node)
 
 void	sort_stack(t_stack_node **head_a, t_stack_node **head_b)
 {
-	char			**best_variant;
-	t_stack_node	*tmp_node;
-	//int				distance;
-	
-	ft_printf("%d\n", 5 / 2);
+	char            **best_variant;
+	int				distance;
+	t_stack_node 	*tmp_node;
+
 	while (get_list_len(*head_b) < 2)
 		push(head_b, head_a, 'b');
-	while (*head_a)
+    while (*head_a)
 	{
-		tmp_node = (*head_a)->next;
 		best_variant = get_fewest_moves(*head_a, *head_b);
 		do_operations(head_a, head_b, best_variant);
-		//print_both_lists(*head_a, *head_b);
-		*head_a = tmp_node;
 	}
-	// tmp_node = get_biggest_node(*head_b);
-	// distance = get_node_distance(tmp_node);
-	/* while (distance)
+	 tmp_node = get_biggest_node(*head_b);
+	 distance = get_node_distance(tmp_node);
+	 while (distance)
 	{
 		if (get_node_distance(tmp_node) > 0)
 			rotate(head_b, 'b');
@@ -322,13 +339,7 @@ void	sort_stack(t_stack_node **head_a, t_stack_node **head_b)
 			reverse_rotate(head_b, 'b');
 		tmp_node = get_biggest_node(*head_b);
 		distance = get_node_distance(tmp_node);
-	} */
-	
-	/* while(tmp_node->prev)
-	{
-		best_variant = get_moves(NULL, tmp_node);
-		do_operations(NULL, &tmp_node, best_variant);
-	} */
-	// while ((*head_a)->prev)
-	// 	*head_a = (*head_a)->prev;
+	}
+	 while (*head_b)
+		 push(head_a, head_b, 'a');
 }

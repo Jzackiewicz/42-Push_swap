@@ -47,18 +47,16 @@ void	push(t_stack_node **head_to, t_stack_node **head_from, char mode)
 	if (!(*head_from))
 		return ;
 	tmp = *head_from;
-	
 	if ((*head_from)->next)
 		(*head_from)->next->prev = NULL;
 	(*head_from) = (*head_from)->next;
 	if (*head_to)
 	{
+        (*head_to)->prev = tmp;
 		tmp->next = (*head_to);
-		(*head_to)->prev = tmp;
 	}
 	else
 		tmp->next = NULL;
-	
 	*head_to = tmp;
 	if (mode == 'a')
 		ft_printf("pa\n");
