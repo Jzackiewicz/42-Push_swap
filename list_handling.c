@@ -76,7 +76,7 @@ void	print_list(t_stack_node *head)
 int		get_list_len(t_stack_node *node)
 {
 	int				len;
-	
+
 	if (!node)
 		return (0);
 	len = 0;

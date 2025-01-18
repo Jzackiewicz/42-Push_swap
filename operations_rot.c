@@ -16,6 +16,8 @@ void	rotate(t_stack_node **head, char mode)
 {
 	t_stack_node	*tmp;
 
+    if (!*head || !(*head)->next)
+		return;
 	tmp = *head;
 	(*head)->next->prev = NULL;
 	while ((*head)->next)
