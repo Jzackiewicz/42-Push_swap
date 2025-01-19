@@ -12,12 +12,22 @@
 
 #include "push_swap.h"
 
+unsigned int	ft_abs(int value)
+{
+	unsigned int	abs_value;
+	int				sign;
+
+	sign = 1;
+	abs_value = (unsigned int)value;
+	if (value < 0)
+		sign *= -1;
+	return (abs_value * sign);
+}
+
 int	get_node_position(t_stack_node *node)
 {
 	int	pos;
 
-	if (!node)
-		return (-1);
 	pos = 0;
 	while (node->prev)
 	{
@@ -30,18 +40,14 @@ int	get_node_position(t_stack_node *node)
 t_stack_node	*get_biggest_node(t_stack_node *head)
 {
 	t_stack_node	*biggest_node;
-	int				biggest_number;
 
 	if (!head)
 		return (NULL);
-	biggest_number = INT_MIN;
+	biggest_node = head;
 	while (head)
 	{
-		if (head->number >= biggest_number)
-		{
-			biggest_number = head->number;
+		if (head->number > biggest_node->number)
 			biggest_node = head;
-		}
 		head = head->next;
 	}
 	return (biggest_node);
@@ -50,18 +56,15 @@ t_stack_node	*get_biggest_node(t_stack_node *head)
 t_stack_node	*get_smallest_node(t_stack_node *head)
 {
 	t_stack_node	*smallest_node;
-	int				smallest_number;
 
 	if (!head)
 		return (NULL);
-	smallest_number = head->number;
+	smallest_node = head;
 	while (head)
 	{
-		if (head->number < smallest_number)
-		{
-			smallest_number = head->number;
+		if (head->number < smallest_node->number)
+
 			smallest_node = head;
-		}
 		head = head->next;
 	}
 	return (smallest_node);
@@ -75,8 +78,6 @@ t_stack_node	*get_target_node(t_stack_node *node, t_stack_node *head_b)
 	if (!node || !head_b)
 		return (NULL);
 	target_node = get_biggest_node(head_b);
-	if (node->number > target_node->number)
-		return (target_node);
 	dif = INT_MAX;
 	while (head_b)
 	{
@@ -91,31 +92,63 @@ t_stack_node	*get_target_node(t_stack_node *node, t_stack_node *head_b)
 	return (target_node);
 }
 
-int	get_node_distance(t_stack_node *node)
+int	*get_node_distances(t_stack_node *node)
 {
 	int	pos;
     int list_len;
-	int	distance;
+	int	*distances;
 
     list_len = get_list_len(node);
 	pos = get_node_position(node);
-	if (pos > (list_len / 2))
-		distance = pos - list_len;
-	else
-		distance = pos;
-	return (distance);
+	distances = (int *) malloc(2 * sizeof(int));
+	if (!distances)
+		return (NULL);
+	distances[0] = pos;
+	distances[1] = pos - list_len;
+	return (distances);
 }
 
-unsigned int	ft_abs(int value)
+int calculate_size(int a, int b)
 {
-	unsigned int	abs_value;
-	int				sign;
+	if ((a > 0 && b > 0) || (a < 0 && b < 0))
+	{
+		if (ft_abs(a) > ft_abs(b))
+			return ft_abs(a);
+		else
+			return ft_abs(b);
+	}
+	else
+		return ft_abs(a) + ft_abs(b);
+}
 
-	sign = 1;
-	abs_value = (unsigned int)value;
-	if (value < 0)
-		sign *= -1;
-	return (abs_value * sign);
+int *get_best_distances(int *distance_a, int *distance_b)
+{
+	int *distances;
+	int size;
+	int i;
+	int j;
+
+	size = INT_MAX;
+	distances = malloc(2 * sizeof(int));
+	i = 0;
+	while (i < 2)
+	{
+		j = 0;
+		while (j < 2)
+		{
+			if(calculate_size(distance_a[i], distance_b[j]) < size)
+			{
+				size = calculate_size(distance_a[i], distance_b[j]);
+				distances[0] = distance_a[i];
+				distances[1] = distance_b[j];
+			}
+			j++;
+		}
+		i++;
+	}
+	free(distance_a);
+	free(distance_b);
+	return (distances);
 }
 
 int	get_moves_count(int distance_a, int distance_b)
@@ -190,17 +223,17 @@ char	*get_move(int *distance_a, int *distance_b)
 {
 	if (*distance_a == 0 && *distance_b == 0)
 		return("pb");
-	else if (*distance_a < 0 && *distance_b < 0)
+	if (*distance_a < 0 && *distance_b < 0)
 		return((*distance_a)++, (*distance_b)++, "rrr");
-	else if (*distance_a > 0 && *distance_b > 0)
+	if (*distance_a > 0 && *distance_b > 0)
 		return((*distance_a)--, (*distance_b)--, "rr");
-	else if (*distance_a < 0)
+	if (*distance_a < 0)
 		return((*distance_a)++, "rra");
-	else if (*distance_b < 0)
+	if (*distance_b < 0)
 		return((*distance_b)++, "rrb");
-	else if (*distance_a > 0)
+	if (*distance_a > 0)
 		return((*distance_a)--, "ra");
-	else if (*distance_b > 0)
+	if (*distance_b > 0)
 		return((*distance_b)--, "rb");
 	return (NULL);
 }
@@ -214,8 +247,10 @@ char	**get_moves(t_stack_node *node_a, t_stack_node *node_b)
 	int		distance_b;
 
 	i = 0;
-	distance_a = get_node_distance(node_a);
-	distance_b = get_node_distance(node_b);
+//	distance_a = get_node_distance(node_a, node_b);
+//	distance_b = get_node_distance(node_b, node_a);
+	distance_a = get_best_distances(get_node_distances(node_a), get_node_distances(node_b))[0];
+	distance_b = get_best_distances(get_node_distances(node_a), get_node_distances(node_b))[1];
 	moves_len = get_moves_count(distance_a, distance_b);
 	moves = (char **)ft_calloc(sizeof(char *), (moves_len + 1));
 	while (i < moves_len)
@@ -316,30 +351,61 @@ void	print_node_numbers(t_stack_node *node)
 	ft_printf("\n");
 }
 
+void	sort_three(t_stack_node **head)
+{
+	t_stack_node *smallest_node;
+	t_stack_node *biggest_node;
+
+	smallest_node = get_smallest_node(*head);
+	biggest_node = get_biggest_node(*head);
+	if (get_node_position(biggest_node) == 1)
+	{
+		reverse_rotate(head, 'a');
+		if (get_node_position(smallest_node) == 1)
+			swap(head, 'a');
+	}
+	else if (get_node_position(biggest_node) == 0)
+	{
+		rotate(head, 'a');
+		if(get_node_position(smallest_node) == 1)
+			swap(head, 'a');
+	}
+	else if (get_node_position(smallest_node) == 1)
+		swap(head, 'a');
+}
+
+void	sort_two(t_stack_node **head)
+{
+	if ((*head)->number > (*head)->next->number)
+		rotate(head, 'a');
+}
+
 void	sort_stack(t_stack_node **head_a, t_stack_node **head_b)
 {
 	char            **best_variant;
-	int				distance;
-	t_stack_node 	*tmp_node;
+	//t_stack_node 	tmp;
 
-	while (get_list_len(*head_b) < 2)
-		push(head_b, head_a, 'b');
     while (*head_a)
 	{
-		best_variant = get_fewest_moves(*head_a, *head_b);
-		do_operations(head_a, head_b, best_variant);
-	}
-	 tmp_node = get_biggest_node(*head_b);
-	 distance = get_node_distance(tmp_node);
-	 while (distance)
-	{
-		if (get_node_distance(tmp_node) > 0)
-			rotate(head_b, 'b');
+		if (get_list_len(*head_a) == 3)
+		{
+			sort_three(head_a);
+			break ;
+		}
+		if (get_list_len(*head_b) < 2)
+			push(head_b, head_a, 'b');
 		else
-			reverse_rotate(head_b, 'b');
-		tmp_node = get_biggest_node(*head_b);
-		distance = get_node_distance(tmp_node);
+		{
+			best_variant = get_fewest_moves(*head_a, *head_b);
+			do_operations(head_a, head_b, best_variant);
+		}
 	}
-	 while (*head_b)
-		 push(head_a, head_b, 'a');
+//	ft_printf("-------------------\n");
+//	while (*head_b)
+//	{
+//		tmp = get_target_node(*head_b, *head_a);
+//		while (*head_a != tmp)
+//
+//		do_operations(head_b, head_a, best_variant);
+//	}
 }

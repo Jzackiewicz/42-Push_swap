@@ -58,4 +58,6 @@ t_stack_node	*get_smallest_node(t_stack_node *head);
 void	print_both_lists(t_stack_node *head_a, t_stack_node *head_b);
 void	print_node_numbers(t_stack_node *node);
 void	remove_node(t_stack_node **node);
+void	sort_three(t_stack_node **head);
+void	sort_two(t_stack_node **head);
 #endif
