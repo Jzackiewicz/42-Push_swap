@@ -23,8 +23,9 @@ void	print_both_lists(t_stack_node *head_a, t_stack_node *head_b)
 int	main(int argc, char **argv)
 {
 	char			**elements;
-	t_stack_node	*a_head;
-	t_stack_node	*b_head;
+	t_stack_node	*head_a;
+	t_stack_node	*head_b;
+	int 			list_len;
 	
 	if (argc < 2)
 		return (0);
@@ -34,16 +35,25 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (-1);
 	}
-	a_head = NULL;
-	b_head = NULL;
-	convert2list(&a_head, elements);
+	head_a = NULL;
+	head_b = NULL;
+	convert2list(&head_a, elements);
+	list_len = get_list_len(head_a);
+	if (list_len < 4)
+	{
+		if (list_len == 3)
+			sort_three(&head_a);
+		else if (list_len == 2)
+			sort_two(&head_a);
+		return (0);
+	}
 /*    ft_printf("Before sort: \n");
-	print_both_lists(a_head, b_head);*/
-	sort_stack(&a_head, &b_head);
-	/*ft_printf("After sort: \n");
-	print_both_lists(a_head, b_head);*/
-	free_list(&a_head);
-	free_list(&b_head);
+	print_both_lists(head_a, head_b);*/
+	sort_stack(&head_a, &head_b);
+//	ft_printf("After sort: \n");
+//	print_both_lists(head_a, head_b);
+	free_list(&head_a);
+	free_list(&head_b);
 	return (0);
 }
 
