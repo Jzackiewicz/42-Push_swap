@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:51:56 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/20 19:09:30 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:20:53 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	sort_two(t_stack_node **head)
 
 void	sort_stack(t_stack_node **head_a, t_stack_node **head_b)
 {
-	char			***moves_variants;
 	char			**best_variant;
 	t_stack_node	*tmp;
 
@@ -58,10 +57,10 @@ void	sort_stack(t_stack_node **head_a, t_stack_node **head_b)
 			push(head_b, head_a, 'b');
 		else
 		{
-			moves_variants = get_all_variants(*head_a, *head_b);
-			best_variant = get_fewest_moves(moves_variants);
+			
+			best_variant = get_fewest_moves(*head_a, *head_b);
 			do_operations(head_a, head_b, best_variant);
-			free_all_variants(moves_variants);
+			// free(best_variant);
 		}
 	}
 	while (*head_b)
