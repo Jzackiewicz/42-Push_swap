@@ -70,8 +70,8 @@ void	sort_stack(t_stack_node **head_a, t_stack_node **head_b)
 		while (*head_a != tmp)
 		{
 			tmp = get_reverse_target_node(*head_b, *head_a);
-			if (get_node_position(tmp) / 2 > get_list_len(*head_a))
-				reverse_rotate(head_a, 'a');
+			if (get_node_position(tmp) > get_list_len(*head_a) / 2)
+                reverse_rotate(head_a, 'a');
 			else
 				rotate(head_a, 'a');
 		}

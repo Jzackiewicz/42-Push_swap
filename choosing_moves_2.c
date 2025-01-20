@@ -57,7 +57,6 @@ char	**get_fewest_moves(char ***moves_variants)
 	char	**best_variant;
 	int		i;
 	int		num_of_moves;
-	int		best_variant_id;
 
 	i = 0;
 	num_of_moves = ft_strlen_2d(moves_variants[i]);
@@ -68,7 +67,6 @@ char	**get_fewest_moves(char ***moves_variants)
 		{
 			num_of_moves = ft_strlen_2d(moves_variants[i]);
 			best_variant = moves_variants[i];
-			best_variant_id = i;
 		}
 		i++;
 	}
