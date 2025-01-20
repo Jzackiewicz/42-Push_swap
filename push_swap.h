@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:48:44 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/20 19:09:19 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:20:14 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char			***get_all_variants(t_stack_node *head_a, t_stack_node *head_b);
 
 //				choosing_moves_2
 char			**get_moves(t_stack_node *node_a, t_stack_node *node_b);
-char			**get_fewest_moves(char ***moves_variants);
+char			**get_fewest_moves(t_stack_node *head_a, t_stack_node *head_b);
 
 //				doing_operations
 void			do_operations(t_stack_node **head_a, t_stack_node **head_b,
