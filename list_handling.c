@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 17:36:41 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/20 10:51:29 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:20:57 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,4 @@ int	get_list_len(t_stack_node *node)
 		node = node->next;
 	}
 	return (len);
-}
-
-void	free_list(t_stack_node **head)
-{
-	t_stack_node	*tmp;
-
-	while ((*head))
-	{
-		tmp = (*head)->next;
-		free(*head);
-		(*head) = tmp;
-	}
 }

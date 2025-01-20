@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:01:18 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/20 13:17:32 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/20 18:11:47 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ int	main(int argc, char **argv)
 	if (check4error(elements))
 	{
 		write(2, "Error\n", 6);
+		free_elements(elements);
 		return (-1);
 	}
 	head_a = NULL;
 	head_b = NULL;
 	convert2list(&head_a, elements);
+	//free_elements(elements);
 	list_len = get_list_len(head_a);
 	if (list_len < 4)
 	{
@@ -45,13 +47,11 @@ int	main(int argc, char **argv)
 			sort_three(&head_a);
 		else if (list_len == 2)
 			sort_two(&head_a);
+		free_list(&head_a);
+		free_list(&head_b);
 		return (0);
 	}
-/*    ft_printf("Before sort: \n");
-	print_both_lists(head_a, head_b);*/
 	sort_stack(&head_a, &head_b);
-	// ft_printf("After sort: \n");
-	// print_both_lists(head_a, head_b);
 	free_list(&head_a);
 	free_list(&head_b);
 	return (0);
