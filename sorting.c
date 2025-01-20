@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:51:56 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/20 12:52:04 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:09:30 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ void	sort_two(t_stack_node **head)
 
 void	sort_stack(t_stack_node **head_a, t_stack_node **head_b)
 {
+	char			***moves_variants;
 	char			**best_variant;
-	//t_stack_node	*tmp;
+	t_stack_node	*tmp;
 
 	while (*head_a)
 	{
@@ -57,20 +58,30 @@ void	sort_stack(t_stack_node **head_a, t_stack_node **head_b)
 			push(head_b, head_a, 'b');
 		else
 		{
-			best_variant = get_fewest_moves(*head_a, *head_b);
+			moves_variants = get_all_variants(*head_a, *head_b);
+			best_variant = get_fewest_moves(moves_variants);
 			do_operations(head_a, head_b, best_variant);
+			free_all_variants(moves_variants);
 		}
 	}
-	// while (*head_b)
-	// {
-	// 	tmp = get_target_node(*head_b, *head_a);
-	// 	while (*head_a != tmp)
-	// 	{
-	// 		if (get_node_position(tmp) / 2 > get_list_len(*head_a))
-	// 			reverse_rotate(head_a, 'a');
-	// 		else
-	// 			rotate(head_a, 'a');
-	// 	}
-	// 	push(head_a, head_b, 'a');
-	// }
+	while (*head_b)
+	{
+		tmp = NULL;
+		while (*head_a != tmp)
+		{
+			tmp = get_reverse_target_node(*head_b, *head_a);
+			if (get_node_position(tmp) / 2 > get_list_len(*head_a))
+				reverse_rotate(head_a, 'a');
+			else
+				rotate(head_a, 'a');
+		}
+		push(head_a, head_b, 'a');
+	}
+	while(get_smallest_node(*head_a) != *head_a)
+	{
+		if(get_node_position(get_smallest_node(*head_a)) / 2 > get_list_len(*head_a))
+			reverse_rotate(head_a, 'a');
+		else
+			rotate(head_a, 'a');
+	}
 }

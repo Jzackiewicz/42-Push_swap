@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:48:44 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/20 11:23:50 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:09:19 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ typedef struct s_stack_node
 
 //				utils
 unsigned int	ft_abs(int value);
-int				get_2d_strlen(char **str);
-void			ft_printf_2d_array(char **str);
-void			free_3d_array(char ***array);
+int				ft_strlen_2d(char **str);
+void			free_all_variants(char ***array);
+void			free_list(t_stack_node **head);
 
 //				error handling
 int				check4error(char **argc);
@@ -42,7 +42,6 @@ void			append_to_list(t_stack_node **head, int nbr);
 void			convert2list(t_stack_node **head, char **elements);
 void			print_list(t_stack_node *head);
 int				get_list_len(t_stack_node *head);
-void			free_list(t_stack_node **head);
 
 //				operations
 void			swap(t_stack_node **head, char which_set);
@@ -60,7 +59,7 @@ int				get_node_position(t_stack_node *node);
 t_stack_node	*get_biggest_node(t_stack_node *head);
 t_stack_node	*get_smallest_node(t_stack_node *head);
 t_stack_node	*get_target_node(t_stack_node *node, t_stack_node *head_b);
-void			print_node_numbers(t_stack_node *node);
+t_stack_node	*get_reverse_target_node(t_stack_node *node, t_stack_node *head_b);
 
 //				choosing_moves_1
 int				*get_node_distances(t_stack_node *node);
@@ -70,7 +69,7 @@ char			***get_all_variants(t_stack_node *head_a, t_stack_node *head_b);
 
 //				choosing_moves_2
 char			**get_moves(t_stack_node *node_a, t_stack_node *node_b);
-char			**get_fewest_moves(t_stack_node *head_a, t_stack_node *head_b);
+char			**get_fewest_moves(char ***moves_variants);
 
 //				doing_operations
 void			do_operations(t_stack_node **head_a, t_stack_node **head_b,

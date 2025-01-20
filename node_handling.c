@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 10:53:13 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/20 11:38:23 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:50:36 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,24 @@ t_stack_node	*get_target_node(t_stack_node *node, t_stack_node *head_b)
 	return (target_node);
 }
 
-void	print_node_numbers(t_stack_node *node)
+t_stack_node	*get_reverse_target_node(t_stack_node *node, t_stack_node *head_b)
 {
-	if (node->prev)
-		ft_printf("prev: %d | ", node->prev->number);
-	else
-		ft_printf("prev: NONE | ");
-	ft_printf("curr: %d | ", node->number);
-	if (node->next)
-		ft_printf("next: %d", node->next->number);
-	else
-		ft_printf("next: NONE");
-	ft_printf("\n");
+	int				dif;
+	t_stack_node	*target_node;
+
+	if (!node || !head_b)
+		return (NULL);
+	target_node = get_smallest_node(head_b);
+	dif = INT_MAX;
+	while (head_b)
+	{
+		if ((head_b->number - node->number) > 0 && (head_b->number
+				- node->number) < dif)
+		{
+			dif = head_b->number - node->number;
+			target_node = head_b;
+		}
+		head_b = head_b->next;
+	}
+	return (target_node);
 }
