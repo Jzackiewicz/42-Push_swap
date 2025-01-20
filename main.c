@@ -52,6 +52,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	sort_stack(&head_a, &head_b);
+    print_both_lists(head_a, head_b);
 	free_list(&head_a);
 	free_list(&head_b);
 	return (0);
