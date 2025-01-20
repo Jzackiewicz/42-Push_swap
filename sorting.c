@@ -79,7 +79,7 @@ void	sort_stack(t_stack_node **head_a, t_stack_node **head_b)
 	}
 	while(get_smallest_node(*head_a) != *head_a)
 	{
-		if(get_node_position(get_smallest_node(*head_a)) / 2 > get_list_len(*head_a))
+		if(get_node_position(get_smallest_node(*head_a)) > get_list_len(*head_a) / 2)
 			reverse_rotate(head_a, 'a');
 		else
 			rotate(head_a, 'a');
