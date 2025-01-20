@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:48:44 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/17 13:58:24 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:23:50 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ typedef struct s_stack_node
 	struct s_stack_node	*prev;
 	struct s_stack_node	*next;
 }				t_stack_node;
+
+//				utils
+unsigned int	ft_abs(int value);
+int				get_2d_strlen(char **str);
+void			ft_printf_2d_array(char **str);
+void			free_3d_array(char ***array);
 
 //				error handling
 int				check4error(char **argc);
@@ -49,15 +55,30 @@ void			reverse_rotate_both(t_stack_node **head_a,
 void			rotate(t_stack_node **head, char mode);
 void			rotate_both(t_stack_node **head_a, t_stack_node **head_b);
 
-//				sorting
-void			sort_stack(t_stack_node **head_a, t_stack_node **head_b);
+//				node_handling
+int				get_node_position(t_stack_node *node);
 t_stack_node	*get_biggest_node(t_stack_node *head);
 t_stack_node	*get_smallest_node(t_stack_node *head);
+t_stack_node	*get_target_node(t_stack_node *node, t_stack_node *head_b);
+void			print_node_numbers(t_stack_node *node);
 
+//				choosing_moves_1
+int				*get_node_distances(t_stack_node *node);
+int				*get_best_distances(int *distance_a, int *distance_b);
+int				get_moves_count(int distance_a, int distance_b);
+char			***get_all_variants(t_stack_node *head_a, t_stack_node *head_b);
 
-void	print_both_lists(t_stack_node *head_a, t_stack_node *head_b);
-void	print_node_numbers(t_stack_node *node);
-void	remove_node(t_stack_node **node);
-void	sort_three(t_stack_node **head);
-void	sort_two(t_stack_node **head);
+//				choosing_moves_2
+char			**get_moves(t_stack_node *node_a, t_stack_node *node_b);
+char			**get_fewest_moves(t_stack_node *head_a, t_stack_node *head_b);
+
+//				doing_operations
+void			do_operations(t_stack_node **head_a, t_stack_node **head_b,
+					char **moves);
+
+//				sorting
+void			sort_stack(t_stack_node **head_a, t_stack_node **head_b);
+void			sort_three(t_stack_node **head);
+void			sort_two(t_stack_node **head);
+
 #endif

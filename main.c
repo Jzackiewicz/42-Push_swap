@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:01:18 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/17 19:19:03 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:17:32 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	main(int argc, char **argv)
 /*    ft_printf("Before sort: \n");
 	print_both_lists(head_a, head_b);*/
 	sort_stack(&head_a, &head_b);
-//	ft_printf("After sort: \n");
-//	print_both_lists(head_a, head_b);
+	// ft_printf("After sort: \n");
+	// print_both_lists(head_a, head_b);
 	free_list(&head_a);
 	free_list(&head_b);
 	return (0);

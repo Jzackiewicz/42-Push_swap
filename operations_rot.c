@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 13:07:56 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/14 15:46:16 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:39:50 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	rotate(t_stack_node **head, char mode)
 {
 	t_stack_node	*tmp;
 
-    if (!*head || !(*head)->next)
-		return;
+	if (!*head || !(*head)->next)
+		return ;
 	tmp = *head;
 	(*head)->next->prev = NULL;
 	while ((*head)->next)
