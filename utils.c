@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 10:55:12 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/20 19:08:10 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:34:44 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ unsigned int	ft_abs(int value)
 	return (abs_value * sign);
 }
 
-int		ft_strlen_2d(char **str)
+int	ft_strlen_2d(char **str)
 {
 	int	i;
 
@@ -34,38 +34,43 @@ int		ft_strlen_2d(char **str)
 	return (i);
 }
 
-int		ft_strlen_3d(char ***str)
+void	free_elements(char **elements)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-void free_all_variants(char ***array)
-{
-    int	i;
-
-	i = 0;
-    while (array[i])
+	while (elements[i])
 	{
-		free(array[i]);
+		free(elements[i]);
 		i++;
 	}
-    free(array);
+	free(elements);
 }
 
+void	free_all_variants(char ***array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+	{
+		free (array[i]);
+		i++;
+	}
+	free (array);
+}
 
 void	free_list(t_stack_node **head)
 {
-	t_stack_node *tmp;
+	t_stack_node	*tmp;
 
-	while(*head)
+	while ((*head)->prev)
+		*head = (*head)->prev;
+	while (*head)
 	{
 		tmp = (*head)->next;
-		free(*head);
+		free (*head);
 		*head = tmp;
 	}
+	*head = NULL;
 }
