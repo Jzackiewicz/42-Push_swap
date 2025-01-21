@@ -4,7 +4,7 @@ CC = cc
 CFLAGS = -g -Wall -Werror -Wextra
 
 SOURCES =	main.c error_handling.c list_handling.c \
-			operations_ps.c operations_rot.c loading_numbers.c \
+			operations_ps.c operations_rot.c parsing_numbers.c \
 			sorting.c node_handling.c utils.c choosing_moves_1.c \
 			choosing_moves_2.c doing_operations.c
 OBJECTS = $(SOURCES:.c=.o)

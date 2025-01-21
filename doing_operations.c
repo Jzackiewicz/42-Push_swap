@@ -6,13 +6,13 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 11:09:49 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/20 12:20:55 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:37:19 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	do_operation(t_stack_node **head_a, t_stack_node **head_b,
+static void	do_operation(t_stack_node **head_a, t_stack_node **head_b,
 		char *operation)
 {
 	if (!ft_strncmp(operation, "pa", 3))
@@ -39,7 +39,7 @@ void	do_operation(t_stack_node **head_a, t_stack_node **head_b,
 		reverse_rotate_both(head_a, head_b);
 }
 
-void	do_operations(t_stack_node **head_a, t_stack_node **head_b, 
+void	do_operations(t_stack_node **head_a, t_stack_node **head_b,
 		char **moves)
 {
 	int	i;

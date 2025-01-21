@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 13:07:56 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/20 11:39:50 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/21 20:08:53 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ void	reverse_rotate(t_stack_node **head, char mode)
 {
 	t_stack_node	*tmp;
 
-	while ((*head)->next)
-		(*head) = (*head)->next;
+	if (!(*head) || !(*head)->next)
+		return ;
 	tmp = *head;
-	(*head)->prev->next = NULL;
-	while ((*head)->prev)
-		(*head) = (*head)->prev;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->prev->next = NULL;
+	(*head)->prev = tmp;
 	tmp->prev = NULL;
 	tmp->next = *head;
-	(*head)->prev = tmp;
 	*head = tmp;
 	if (mode == 'a')
 		ft_printf("rra\n");

@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:44:04 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/14 15:48:44 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:38:28 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,16 @@ int	check4error(char **elements)
 	}
 	if (check4duplicates(elements))
 		return (1);
+	return (0);
+}
+
+int	error_exit(char **elements)
+{
+	if (check4error(elements))
+	{
+		write(2, "Error\n", 6);
+		free_elements(elements);
+		return (-1);
+	}
 	return (0);
 }

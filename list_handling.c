@@ -6,13 +6,13 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 17:36:41 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/21 15:53:56 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:38:06 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack_node	*create_node(int nbr)
+static t_stack_node	*create_node(int nbr)
 {
 	t_stack_node	*new_node;
 
@@ -28,7 +28,7 @@ t_stack_node	*create_node(int nbr)
 	return (new_node);
 }
 
-void	append_to_list(t_stack_node **head, int nbr)
+static void	append_to_list(t_stack_node **head, int nbr)
 {
 	t_stack_node	*new_node;
 	t_stack_node	*tmp;
@@ -61,18 +61,6 @@ void	convert2list(t_stack_node **head, char **elements)
 	free_elements(elements);
 }
 
-void	print_list(t_stack_node *head)
-{
-	t_stack_node	*tmp;
-
-	tmp = head;
-	while (tmp)
-	{
-		ft_printf("prev: <%s> | curr: %d | next: <%s>\n", tmp->prev, tmp->number, tmp->next);
-		tmp = tmp->next;
-	}
-}
-
 int	get_list_len(t_stack_node *node)
 {
 	int	len;
@@ -89,4 +77,3 @@ int	get_list_len(t_stack_node *node)
 	}
 	return (len);
 }
-
