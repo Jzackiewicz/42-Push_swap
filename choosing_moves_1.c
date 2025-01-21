@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 10:58:49 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/20 13:17:03 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:19:21 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	***get_all_variants(t_stack_node *head_a, t_stack_node *head_b)
 	while (head_a)
 	{
 		tmp = get_target_node(head_a, head_b);
-		moves_variants[i++] = get_moves(head_a, tmp);
+		moves_variants[i++] = get_moves(head_a, tmp, 'b');
 		head_a = head_a->next;
 	}
 	return (moves_variants);
