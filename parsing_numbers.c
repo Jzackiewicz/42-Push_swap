@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:46:50 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/15 09:05:14 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:34:21 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,4 @@ char	**get_elements(int argc, char **argv)
 			elements[i] = ft_strdup(argv[i]);
 	}
 	return (elements);
-}
-
-void	free_elements(char **elements)
-{
-	int	i;
-
-	i = 0;
-	while (elements[i])
-	{
-		free(elements[i]);
-		i++;
-	}
-	free(elements);
 }

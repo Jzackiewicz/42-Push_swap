@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:07:39 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/21 16:08:29 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:09:14 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 void	swap(t_stack_node **head, char mode)
 {
-	t_stack_node	*tmp;
+	t_stack_node	*first;
+	t_stack_node	*second;
 
-	if (!(*head) || (*head)->next)
+	if (!(*head) || !(*head)->next)
 		return ;
-	tmp = *head;
-	tmp->prev = (*head)->next;
-	tmp->next = (*head)->next->next;
-	(*head)->next->prev = NULL;
-	(*head)->next = tmp;
-	*head = tmp;
+	first = *head;
+	second = (*head)->next;
+	if (second->next)
+		first->next = second->next;
+	first->prev = second;
+	second->prev = NULL;
+	second->next = first;
+	*head = first;
 	if (mode == 'a')
 		ft_printf("sa\n");
 	if (mode == 'b')
@@ -49,7 +52,7 @@ void	push(t_stack_node **head_to, t_stack_node **head_from, char mode)
 	(*head_from) = (*head_from)->next;
 	if (*head_to)
 	{
-        (*head_to)->prev = tmp;
+		(*head_to)->prev = tmp;
 		tmp->next = (*head_to);
 	}
 	else
