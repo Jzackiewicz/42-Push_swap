@@ -6,29 +6,47 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:02:46 by jzackiew          #+#    #+#             */
-/*   Updated: 2024/12/07 13:25:25 by jzackiew         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:13:21 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+static void	*move(void *dest, char *d, char *s, size_t n)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
+	int		i;
 
-	if (!src || !dest)
+	if (d == NULL && s == NULL)
 		return (NULL);
-	d = (unsigned char *)dest;
-	s = (const unsigned char *)src;
-	if (s < d && d < s + n)
+	if (s > d)
 	{
-		while (n--)
-			d[n] = s[n];
+		i = 0;
+		while (i < (int)n)
+		{
+			d[i] = s[i];
+			i++;
+		}
 	}
 	else
-		dest = ft_memcpy(d, s, n);
+	{
+		i = (int)n - 1;
+		while (i >= 0)
+		{
+			d[i] = s[i];
+			i--;
+		}
+	}
 	return (dest);
+}
+
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	char	*d;
+	char	*s;
+
+	d = (char *)dest;
+	s = (char *)src;
+	return (move(dest, d, s, n));
 }
 
 /* int main()

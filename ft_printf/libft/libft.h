@@ -6,13 +6,14 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:00:44 by jzackiew          #+#    #+#             */
-/*   Updated: 2024/12/07 13:56:02 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:40:14 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include "get_next_line.h"
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
