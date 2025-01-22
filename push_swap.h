@@ -32,7 +32,7 @@ void			free_list(t_stack_node **head);
 
 //				error handling
 int				check4error(char **argc);
-int				error_exit(char **elements);
+int 	        error_exit(char **elements);
 
 //				parsing_numbers
 char			**get_elements(int argc, char **argv);
