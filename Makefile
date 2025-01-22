@@ -1,7 +1,7 @@
 NAME = push_swap
 
 CC = cc
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 SOURCES =	main.c error_handling.c list_handling.c \
 			operations_ps.c operations_rot.c parsing_numbers.c \
