@@ -95,8 +95,8 @@ static void	push_back(t_stack_node **head_a, t_stack_node **head_b)
 
 void	sort_stack(t_stack_node **head_a, t_stack_node **head_b)
 {
-	if (get_list_len(*head_a) == 1)
-		;
+	if (get_list_len(*head_a) < 2)
+        return ;
 	else if (get_list_len(*head_a) == 2)
 		sort_two(head_a);
 	else
