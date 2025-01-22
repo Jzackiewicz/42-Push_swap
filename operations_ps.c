@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:07:39 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/21 18:09:14 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:47:39 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,14 @@ void	swap(t_stack_node **head, char mode)
 	t_stack_node	*first;
 	t_stack_node	*second;
 
-	if (!(*head) || !(*head)->next)
-		return ;
 	first = *head;
 	second = (*head)->next;
 	if (second->next)
-		first->next = second->next;
+		second->next->prev = first;
+	first->next = second->next;
 	first->prev = second;
-	second->prev = NULL;
 	second->next = first;
-	*head = first;
+	second->prev = NULL;
 	if (mode == 'a')
 		ft_printf("sa\n");
 	if (mode == 'b')
