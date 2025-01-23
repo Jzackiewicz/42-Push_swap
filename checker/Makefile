@@ -5,7 +5,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 SOURCES	=	doing_operations.c error_handling.c list_handling.c \
 			main.c operations_ps.c operations_rot.c \
-			parsing_numbers.c utils.c
+			parsing_numbers.c utils.c checking.c
 OBJECTS	=	$(SOURCES:.c=.o)
 
 PRINTF_DIR	=	../ft_printf

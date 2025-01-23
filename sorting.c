@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:51:56 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/22 13:56:01 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:41:45 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	push_back(t_stack_node **head_a, t_stack_node **head_b)
 void	sort_stack(t_stack_node **head_a, t_stack_node **head_b)
 {
 	if (get_list_len(*head_a) < 2)
-        return ;
+		return ;
 	else if (get_list_len(*head_a) == 2)
 		sort_two(head_a);
 	else
