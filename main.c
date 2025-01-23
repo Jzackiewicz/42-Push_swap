@@ -26,6 +26,8 @@ int	main(int argc, char **argv)
 	head_a = NULL;
 	head_b = NULL;
 	convert2list(&head_a, elements);
+    if (is_list_sorted(head_a))
+            return (0) ;
 	sort_stack(&head_a, &head_b);
 	return (0);
 }

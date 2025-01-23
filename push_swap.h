@@ -40,6 +40,7 @@ char			**get_elements(int argc, char **argv);
 //				list handling
 void			convert2list(t_stack_node **head, char **elements);
 int				get_list_len(t_stack_node *head);
+int             is_list_sorted(t_stack_node *head);
 
 //				operations
 void			swap(t_stack_node **head, char which_set);
