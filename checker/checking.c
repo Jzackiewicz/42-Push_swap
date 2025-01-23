@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:42:44 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/23 11:43:00 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:30:06 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	check_operations(t_stack_node **head_a, t_stack_node **head_b)
 {
-	char			*line;
-	
+	char	*line;
+
 	while (1)
 	{
 		line = get_next_line(0);
 		if (!line)
-			break;
+			break ;
 		if (!do_operation(head_a, head_b, line))
 		{
 			free(line);
@@ -47,7 +47,7 @@ void	is_list_sorted(t_stack_node *head_a, t_stack_node *head_b)
 	}
 	while (head_a)
 	{
-		if(head_a->next)
+		if (head_a->next)
 		{
 			if (head_a->number > head_a->next->number)
 			{
