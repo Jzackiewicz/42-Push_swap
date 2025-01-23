@@ -84,6 +84,8 @@ int	check4error(char **elements)
 			return (1);
 		if (check4overflow(elements[i]))
 			return (1);
+        if (!ft_strlen(elements[i]))
+            return (1);
 		i++;
 	}
 	if (check4duplicates(elements))

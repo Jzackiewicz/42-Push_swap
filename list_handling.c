@@ -77,3 +77,15 @@ int	get_list_len(t_stack_node *node)
 	}
 	return (len);
 }
+
+int is_list_sorted(t_stack_node *head)
+{
+    while (head)
+    {
+        if (head->next)
+            if (head->number > head->next->number)
+                return (0);
+        head = head->next;
+    }
+    return (1);
+}
