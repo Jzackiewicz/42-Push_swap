@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:48:44 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/22 13:47:55 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:40:42 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void			free_list(t_stack_node **head);
 
 //				error handling
 int				check4error(char **argc);
-int 	        error_exit(char **elements);
+int				error_exit(char **elements);
 
 //				parsing_numbers
 char			**get_elements(int argc, char **argv);
@@ -40,7 +40,7 @@ char			**get_elements(int argc, char **argv);
 //				list handling
 void			convert2list(t_stack_node **head, char **elements);
 int				get_list_len(t_stack_node *head);
-int             is_list_sorted(t_stack_node *head);
+int				is_list_sorted(t_stack_node *head);
 
 //				operations
 void			swap(t_stack_node **head, char which_set);

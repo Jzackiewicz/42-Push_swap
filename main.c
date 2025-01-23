@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:01:18 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/22 11:52:07 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:40:55 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	main(int argc, char **argv)
 	head_a = NULL;
 	head_b = NULL;
 	convert2list(&head_a, elements);
-    if (is_list_sorted(head_a))
-            return (0) ;
+	if (is_list_sorted(head_a))
+		return (0);
 	sort_stack(&head_a, &head_b);
 	return (0);
 }

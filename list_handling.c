@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 17:36:41 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/21 17:38:06 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:42:20 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,14 @@ int	get_list_len(t_stack_node *node)
 	return (len);
 }
 
-int is_list_sorted(t_stack_node *head)
+int	is_list_sorted(t_stack_node *head)
 {
-    while (head)
-    {
-        if (head->next)
-            if (head->number > head->next->number)
-                return (0);
-        head = head->next;
-    }
-    return (1);
+	while (head)
+	{
+		if (head->next)
+			if (head->number > head->next->number)
+				return (0);
+		head = head->next;
+	}
+	return (1);
 }
