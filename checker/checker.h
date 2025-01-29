@@ -6,15 +6,14 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:09:57 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/23 12:29:47 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/29 08:50:19 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
 
-# include "../ft_printf/ft_printf.h"
-# include "../ft_printf/libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_stack_node
 {
