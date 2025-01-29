@@ -6,15 +6,14 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:48:44 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/23 11:40:42 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/29 08:44:11 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "ft_printf/ft_printf.h"
-# include "ft_printf/libft/libft.h"
+# include "libft/libft.h"
 
 typedef struct s_stack_node
 {
