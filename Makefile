@@ -9,23 +9,23 @@ SOURCES =	main.c error_handling.c list_handling.c \
 			choosing_moves_2.c doing_operations.c
 OBJECTS = $(SOURCES:.c=.o)
 
-PRINTF_DIR = ft_printf
-PRINTF = $(PRINTF_DIR)/libftprintf.a
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
 all: $(NAME)
 
-$(PRINTF):
-	make -C $(PRINTF_DIR)
+$(LIBFT):
+	make -C $(LIBFT_DIR)
 
-push_swap: $(OBJECTS) $(PRINTF)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(PRINTF)
+push_swap: $(OBJECTS) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(LIBFT)
 
 clean:
-	make -C $(PRINTF_DIR) clean
+	make -C $(LIBFT_DIR) clean
 	rm -f $(OBJECTS) 
 
 fclean: clean
-	make -C $(PRINTF_DIR) fclean
+	make -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
 
 re: fclean all
