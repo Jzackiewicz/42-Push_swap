@@ -6,7 +6,7 @@
 /*   By: jzackiew <jzackiew@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:44:04 by jzackiew          #+#    #+#             */
-/*   Updated: 2025/01/23 12:29:29 by jzackiew         ###   ########.fr       */
+/*   Updated: 2025/01/29 08:52:12 by jzackiew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static int	check4overflow(char *nbr)
 
 	int_limit_strlen = 10;
 	nbr_strlen = ft_strlen(nbr);
-	if (nbr[0] == '+' || nbr[0] == '-')
-		nbr_strlen--;
+	if (nbr[0] == '-')
+		int_limit_strlen++;
 	if (nbr_strlen > int_limit_strlen)
 		return (1);
 	else if (nbr_strlen == int_limit_strlen)
